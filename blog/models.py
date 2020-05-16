@@ -21,7 +21,7 @@ class Post(Model):
     content = MarkdownxField()
     status = CharField(max_length=100, choices=STATUS, default='draft')
     tags = TaggableManager(blank=True)
-    # category = CharField(max_length=100, default='')
+
 
     def __str__(self):
         return self.title
