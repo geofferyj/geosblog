@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/geofferyj/public_html/
+    # - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH

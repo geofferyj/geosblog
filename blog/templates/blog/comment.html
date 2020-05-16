@@ -1,0 +1,40 @@
+
+{% load crispy_forms_tags %}
+
+<div class="comments" style="padding: 10px; border: 0.4px dashed">
+    <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+    </p>
+
+
+    {{ comment.body | linebreaks }}
+    
+     <button class="btn btn-primary reply-btn" onclick="displayToggle('{{comment.id}}');">Reply</button>
+      <div id="{{comment.id}}" class="reply-form"> 
+       
+        <h5>Reply</h5>
+
+        <form method="post">
+
+          <input type="hidden" name="comment_id" value="{{comment.id}}">
+          
+            {{ comment_form | crispy}}
+            {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+       
+        </form>
+        
+      </div>
+    
+
+    {% if comment.children %}
+        {% for comment in comment.children %}
+            {% include 'blog/comment.html' %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+        

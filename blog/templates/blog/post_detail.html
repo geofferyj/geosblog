@@ -1,0 +1,85 @@
+﻿{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load markdown_2_html %}
+{% block content %}
+
+
+<div class="col-lg-12 blog-post">
+
+
+  <article class="post" style="padding-top:1em; border-bottom: none;">
+    <div class="inner">
+      <header class="post-header">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <span class="post-meta">
+          Geoffery Joseph | {{ post.created_on }}
+        </span>
+        <div class="clear"></div>
+      </header>
+
+      <section class="post-content">
+        <p>{{ post.content | formatted_markdown}}</p>
+      </section>
+    </div>
+  </article>
+
+
+  <!-- Post Author Bio Box Start -->
+  <div class="about-author margin-top-70 margin-bottom-50">
+    <div class="picture">
+      <img src={% static 'blog/images/logo.jpg' %} class="img-fluid" alt="">
+    </div>
+    <div class="c-padding">
+      <h4>Article By Geoffery Joseph </h4>
+      <p>Geoffery is a Data Science enthausiats, a pythonnista with a Computer Science Degree in view</p>
+    </div>
+  </div>
+  <!-- Post Author Bio Box End -->
+
+
+  <!-- Post Comment Start -->
+  <div id="comment" class="comment">
+
+
+    <div class="col-lg-12 card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <h3>{{ comments.count}} comment{{ comments.count|pluralize }}</h3>
+
+        {% for comment in comments %}
+
+          {% if not comment.parent%}
+            {% include 'blog/comment.html' %}
+          {% endif %}
+          
+        {% endfor %}
+      </div>
+    </div>
+
+
+
+
+    <div class="col-lg-12 card mb-4  mt-3 ">
+      <div class="card-body">
+        {% comment %} {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+          Comment posted successfully
+        </div>
+        {% else %} {% endcomment %}
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form | crispy }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% comment %} {% endif %} {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock  %}

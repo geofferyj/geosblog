@@ -1,0 +1,284 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta Tag -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO -->
+  {% if post.description %}
+  <meta name="description" content={{ post.description }}>
+  {% else%}
+  <meta name="description" content="A Personal Log chronicling my Data Science journey">
+
+  {% endif %}
+
+  <meta name="author" content="Geoffery Joseph">
+  <meta name="url" content="https://geoffery.ml">
+
+
+  <title>Geos Blog</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href={% static "blog/images/favicon/logo.png" %}>
+
+  <!-- All CSS Plugins -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href={% static 'blog/css/prism.css' %}>
+  
+  <script>
+    $('pre').addClass('ss-container');
+  </script>
+
+
+  <!-- Simple Scroll bar-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css">
+  <script src="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.min.js"></script>
+
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/bb201e8e44.js" crossorigin="anonymous"></script>
+
+  <!-- Main CSS Stylesheet -->
+  <link rel="stylesheet" type="text/css" href={% static "blog/css/style.css" %}>
+
+  <!-- Google Web Fonts  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Syntax Highlighter  -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/monokai-sublime.min.css" />
+
+  <script src="https://kit.fontawesome.com/bb201e8e44.js" crossorigin="anonymous"></script>
+
+
+  <!--KaTex Math Renderer-->
+  
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  
+  <script 
+    defer 
+    src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js">
+  </script>
+  <script 
+    defer 
+    src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+
+
+</head>
+
+
+<body>
+
+
+  <!-- Preloader Start -->
+  <div class="preloader">
+    <div class="rounder"></div>
+  </div>
+  <!-- Preloader End -->
+
+
+  <div id="main">
+    <div class="container">
+      <div class="row">
+
+
+        <!-- About Me (Left Sidebar) Start -->
+        <div class="col-lg-3">
+          <div class="about-fixed">
+
+            <div class="my-detail">
+              <div class="white-spacing"> <span>Geoffery Joseph</span>
+                <span class="my-sub-title">A Pythonista</span>
+              </div>
+              <ul class="social-icon">
+                <li><a href="#" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- About Me (Left Sidebar) End -->
+
+
+        <!-- Blog Post (Right Sidebar) Start -->
+        <div class="col-lg-9">
+          <div class="col-lg-12 page-body">
+            <div class="row">
+
+              {% if request.path == '/' %}
+              <div class="sub-title">
+                <a href={% url 'blog_index' %} title="Go to Home Page">
+                  <h1 class="main-head">Geo's Blog</h1>
+                </a>
+              </div>
+
+              {% else %}
+              <div class="sub-title alt-head"> <a href={% url 'blog_index' %} title="Go to Home Page">
+
+                  <h1 style="margin-top:0px">Back Home</h1>
+
+                </a>
+                <a href="#comment" class="smoth-scroll"><i class="fas fa-comments"></i></i></a>
+              </div>
+              {% endif %}
+
+              <div class="col-lg-12 content-page infinite-container">
+
+                {% block content %}
+
+                {% comment %} main content goes here {% endcomment %}
+
+
+                {% endblock  %}
+                {% if is_paginated %}
+                  {% if page_obj.has_next %}
+                      <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+                  {% endif %}
+                {% endif %}
+
+              </div>
+            </div>
+
+          </div>
+          <!-- Footer Start -->
+          <div class="col-lg-12 page-body margin-top-50 footer">
+            <footer>
+              <div class="my-detail">
+                <ul class="social-icon">
+                  <li><a href="#" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>
+                  </li>
+                  <li><a href="#" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li><a href="#" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                  </li>
+                  <li><a href="#" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                  </li>
+                </ul>
+              </div>
+
+            </footer>
+          </div>
+          <!-- Footer End -->
+        </div>
+        <!-- Blog Post (Right Sidebar) End -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Start -->
+  <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
+  <!-- Back to Top End -->
+
+  <!-- All Javascript Plugins  -->
+
+  <!-- JQuery import and initialization -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js"></script>
+
+  <!-- Bootstrap.js and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"> </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script>
+
+  <!-- infinite scroll-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js"></script>
+
+  <!--Highlighter-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+
+      document.querySelectorAll('code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+  </script>
+
+
+  <script>
+    $('pre').addClass('ss-container');
+  </script>
+
+  <script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        handler: function(direction) {
+    },
+    offset: 'bottom-in-view',
+    onBeforePageLoad: function () {
+    $('.spinner-border').show();
+    },
+    onAfterPageLoad: function () {
+    $('.spinner-border').hide();
+    }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false }
+          ]
+        });
+      });
+
+
+        function displayToggle(id) {
+          let x = document.getElementById(id);
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+  </script>
+
+{% comment %} 
+        function change( el ){
+        if ( el.innerHTML === "Reply" )
+          el.innerHTML = "Cancel Reply";
+        else
+          el.innerHTML = "Reply";
+        }
+
+        function fire(id){
+          displayToggle(id);
+          change(this);
+        } {% endcomment %}
+      
+ 
+  <!-- Main Javascript File  -->
+  <script type="text/javascript" src={% static "blog/js/scripts.js" %}></script>
+
+</body>
+
+</html>
