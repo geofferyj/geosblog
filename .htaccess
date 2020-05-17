@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteBase /
+RewriteRule ^(static/.*)$ - [L]
 RewriteRule ^(media/.*)$ - [L]
 RewriteRule ^(admin_media/.*)$ - [L]
 RewriteRule ^(geoffery/dispatch\.wsgi/.*)$ - [L]
