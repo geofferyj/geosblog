@@ -21,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@5m=u5%drnd+vgg0m0)&n_rpx3u%s+8liemg_l3$pem*eh-z(r'
+SECRET_KEY = 'f$H%dc|E:%,^6c-%KiS<($KD,$GT!jY+!`aA8*Qx05{j}vjdskh&^%&888gfg,jdJ'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -32,18 +32,17 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog.apps.BlogConfig',
     'crispy_forms',
     'taggit',
     'markdownx',
     'treenode',
-    
 ]
 
 MIDDLEWARE = [
@@ -91,7 +90,7 @@ DATABASES = {
         'NAME': 'geoffery_blogDB',
         'USER': 'geoffery_admin',
         'PASSWORD': 'DONsniper@001',
-        'HOST': '65.19.143.6',
+        'HOST': 'localhost', #'65.19.143.6',
         'PORT': '',
     }
 }
