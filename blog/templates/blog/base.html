@@ -20,7 +20,7 @@
   {% endif %}
 
   <meta name="author" content="Geoffery Joseph">
-  <meta name="url" content="https://geoffery.ml">
+  <meta name="url" content="https://geosblog.ml">
 
 
   <title>Geos Blog</title>
@@ -33,18 +33,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href={% static 'blog/css/prism.css' %}>
   
-  <script>
-    $('pre').addClass('ss-container');
-  </script>
-
-
   <!-- Simple Scroll bar-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css">
-  <script src="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.min.js"></script>
-
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/bb201e8e44.js" crossorigin="anonymous"></script>
 
   <!-- Main CSS Stylesheet -->
   <link rel="stylesheet" type="text/css" href={% static "blog/css/style.css" %}>
@@ -57,16 +47,11 @@
     href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
     rel="stylesheet">
 
-
   <!-- Syntax Highlighter  -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/monokai-sublime.min.css" />
 
-  <script src="https://kit.fontawesome.com/bb201e8e44.js" crossorigin="anonymous"></script>
-
-
   <!--KaTex Math Renderer-->
-  
   <link 
     rel="stylesheet" 
     href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
@@ -80,8 +65,6 @@
     src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body);"></script>
 
-
-
 </head>
 
 
@@ -92,7 +75,7 @@
   <div class="preloader">
     <div class="rounder"></div>
   </div>
-  <!-- Preloader End -->
+  <!-- Preloader End --> 
 
 
   <div id="main">
@@ -195,9 +178,11 @@
 
   <!-- All Javascript Plugins  -->
 
-  <!-- JQuery import and initialization -->
+   <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/bb201e8e44.js" crossorigin="anonymous"></script>
+
+  <!-- JQuery-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js"></script>
 
   <!-- Bootstrap.js and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"> </script>
@@ -209,75 +194,20 @@
 
   <!--Highlighter-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      document.querySelectorAll('pre').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
 
-      document.querySelectorAll('code').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
-    });
-  </script>
+  <!-- Simple Scroll bar-->
+  <script src="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.min.js"></script>
 
-
-  <script>
-    $('pre').addClass('ss-container');
-  </script>
-
-  <script>
-    var infinite = new Waypoint.Infinite({
-        element: $('.infinite-container')[0],
-        handler: function(direction) {
-    },
-    offset: 'bottom-in-view',
-    onBeforePageLoad: function () {
-    $('.spinner-border').show();
-    },
-    onAfterPageLoad: function () {
-    $('.spinner-border').hide();
-    }
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: "$$", right: "$$", display: true },
-            { left: "\\[", right: "\\]", display: true },
-            { left: "$", right: "$", display: false },
-            { left: "\\(", right: "\\)", display: false }
-          ]
-        });
-      });
-
-
-        function displayToggle(id) {
-          let x = document.getElementById(id);
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
-  </script>
-
-{% comment %} 
-        function change( el ){
-        if ( el.innerHTML === "Reply" )
-          el.innerHTML = "Cancel Reply";
-        else
-          el.innerHTML = "Reply";
-        }
-
-        function fire(id){
-          displayToggle(id);
-          change(this);
-        } {% endcomment %}
-      
- 
   <!-- Main Javascript File  -->
   <script type="text/javascript" src={% static "blog/js/scripts.js" %}></script>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+      
+    });
+
+  </script>
 
 </body>
 

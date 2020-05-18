@@ -1,14 +1,15 @@
 
 {% load crispy_forms_tags %}
 
-<div class="comments" style="padding: 10px; border: 0.4px dashed">
+{% with level=comment.level %}
+
+<div class="comments" style="margin-left:{% widthratio level  1 10 %}px">
     <p class="font-weight-bold">
             {{ comment.name }}
             <span class=" text-muted font-weight-normal">
               {{ comment.created_on }}
             </span>
     </p>
-
 
     {{ comment.body | linebreaks }}
     
@@ -28,13 +29,12 @@
         </form>
         
       </div>
-    
+</div>
+{% endwith %}
 
-    {% if comment.children %}
+ {% if comment.children %}
         {% for comment in comment.children %}
             {% include 'blog/comment.html' %}
         {% endfor %}
-    {% endif %}
-</div>
-
+  {% endif %}
         

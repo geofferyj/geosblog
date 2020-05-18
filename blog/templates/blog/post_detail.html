@@ -13,22 +13,22 @@
       <header class="post-header">
         <h1 class="post-title">{{ post.title }}</h1>
         <span class="post-meta">
-          Geoffery Joseph | {{ post.created_on }}
+          Geoffery Joseph | {{ post.created_on | date:"M j, Y"}}
         </span>
         <div class="clear"></div>
       </header>
 
       <section class="post-content">
-        <p>{{ post.content | formatted_markdown}}</p>
+        <p>{{ post.content | formatted_markdown | safe}}</p>
       </section>
     </div>
   </article>
 
 
   <!-- Post Author Bio Box Start -->
-  <div class="about-author margin-top-70 margin-bottom-50">
+  <div class="about-author">
     <div class="picture">
-      <img src={% static 'blog/images/logo.jpg' %} class="img-fluid" alt="">
+      <img src={% static 'blog/images/favicon/logo.png' %} class="img-fluid" alt="">
     </div>
     <div class="c-padding">
       <h4>Article By Geoffery Joseph </h4>
@@ -68,7 +68,7 @@
         </div>
         {% else %} {% endcomment %}
         <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
+        <form method="post" class="comment-form" style="margin-top: 1.3em;">
           {{ comment_form | crispy }}
           {% csrf_token %}
           <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
